@@ -7,7 +7,8 @@ import SideBar from "./SideBar";
 import { useState } from "react";
 
 function Home() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [exercisesOpen, setIsExercisesOpen] = useState(true);
+    const [layoutIsGrid, setLayoutIsGrid] = useState(true);
 
     return(
         <>
@@ -15,10 +16,10 @@ function Home() {
                 <div className="w-64 h-auto">
                     <SideBar />
                 </div>
-                <div className="flex flex-col h-auto w-full ronded-lg">
+                <div className="flex flex-col h-auto w-full">
                     <div className="flex justify-between w-full">
                         <h1 className="font-bold text-3xl">Exercises</h1>
-                        <button className="bg-primary-color rounded-full text-white p-3">
+                        <button className="bg-primary-color rounded-full text-white p-3 drop-shadow-[0_5px_5px_rgba(0,0,0,0.50)]">
                             <RiAddFill size={30} />
                         </button>
                     </div>
@@ -31,17 +32,17 @@ function Home() {
                             />
                         </label>
                         <div className="flex flex-row gap-8">
-                            <button className="text-primary-color">
+                            <button className={`${layoutIsGrid ? "text-primary-color" : "text-light-grey"}`} onClick={() => setLayoutIsGrid(true)}>
                                 <TfiLayoutGrid2 size={35} />
                             </button>
-                            <button className="text-light-grey">
+                            <button className={`${layoutIsGrid ? "text-light-grey" : "text-primary-color"}`} onClick={() => setLayoutIsGrid(false)}>
                                 <BsListUl size={35} />
                             </button>
                         </div>
                     </div>
-                    {isOpen 
+                    {exercisesOpen 
                         ? 
-                        <Exercises exercises={ExerciseList} />
+                        <Exercises exercises={ExerciseList} layoutIsGrid={layoutIsGrid} />
                         :
                         <></>
                     }

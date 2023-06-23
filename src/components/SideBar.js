@@ -3,7 +3,7 @@ import {MdHome}  from "react-icons/md";
 import {BiCalendarAlt} from "react-icons/bi";
 
 function SideBar() {
-    
+
 
     return (
         <>
@@ -29,10 +29,10 @@ function SideBar() {
             </div>
             <div className="flex flex-col mt-14">
                 <button className="flex flex-row items-center gap-4 h-[58px]">
-                    <div className="bg-secondary-button-bg text-white rounded-sm h-7 w-7 flex items-center justify-center">
+                    <div className="bg-primary-color text-white rounded-sm h-7 w-7 flex items-center justify-center">
                         <MdHome size={20} />
                     </div>
-                    <p className="text-sm text-light-black">Exercises</p>
+                    <p className="text-sm font-bold text-primary-color">Exercises</p>
                 </button>
                 <button className="flex flex-row items-center gap-4 h-[58px]">
                     <div className="bg-secondary-button-bg text-white rounded-sm h-7 w-7 flex items-center justify-center">

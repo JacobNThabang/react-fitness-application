@@ -15,7 +15,8 @@ module.exports = {
           "secondary-button-bg": "#17252A80",
           "light-grey": "#17252A80",
           "light-black": "#000000DE", 
-          "chev-color": "#17252A"
+          "chev-color": "#17252A",
+          "secondary-text-color": "#747474"
       }
     },
   },
