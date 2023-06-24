@@ -14,7 +14,7 @@ function Home() {
         <>
             <div className="flex flex-row w-full h-screen">
                 <div className="w-64 h-auto">
-                    <SideBar />
+                    <SideBar isExercisesOpen={exercisesOpen} setIsExercisesOpen={setIsExercisesOpen}/>
                 </div>
                 <div className="flex flex-col h-auto w-full">
                     <div className="flex justify-between w-full">

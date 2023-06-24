@@ -2,7 +2,8 @@ import {FiChevronDown} from "react-icons/fi";
 import {MdHome}  from "react-icons/md"; 
 import {BiCalendarAlt} from "react-icons/bi";
 
-function SideBar() {
+function SideBar(props) {
+    const {isExercisesOpen, setIsExercisesOpen} = props;
 
 
     return (
@@ -27,18 +28,18 @@ function SideBar() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col mt-14">
-                <button className="flex flex-row items-center gap-4 h-[58px]">
-                    <div className="bg-primary-color text-white rounded-sm h-7 w-7 flex items-center justify-center">
+            <div className="sidebar flex flex-col mt-14">
+                <button onClick={() => setIsExercisesOpen(true)}>
+                <div className={`icon ${isExercisesOpen ? "bg-primary-color" : "bg-secondary-button-bg"} text-white rounded-sm`}>
                         <MdHome size={20} />
                     </div>
-                    <p className="text-sm font-bold text-primary-color">Exercises</p>
+                    <p className={`${isExercisesOpen ? "text-primary-color font-bold" : "text-light-black opacity-50"}`}>Exercises</p>
                 </button>
-                <button className="flex flex-row items-center gap-4 h-[58px]">
-                    <div className="bg-secondary-button-bg text-white rounded-sm h-7 w-7 flex items-center justify-center">
+                <button onClick={() => setIsExercisesOpen(false)}>
+                    <div className={`icon ${isExercisesOpen ? "bg-secondary-button-bg" : "bg-primary-color"} text-white rounded-sm`}>
                         <BiCalendarAlt size={20} />
                     </div>
-                    <p className="text-sm text-light-black font-normal opacity-50">Workout Log</p>
+                    <p className={`${isExercisesOpen ? "text-light-black opacity-50" : "text-primary-color font-bold"}`}>Workout Log</p>
                 </button>
             </div>
         </>

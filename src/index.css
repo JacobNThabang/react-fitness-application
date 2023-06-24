@@ -15,3 +15,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.sidebar button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 217px;
+  height: 58px;
+  flex-shrink: 0;
+  gap: 16px;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .p {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+  }
+}
