@@ -5,7 +5,6 @@ import {BiCalendarAlt} from "react-icons/bi";
 function SideBar(props) {
     const {isExercisesOpen, setIsExercisesOpen} = props;
 
-
     return (
         <>
             <div className="w-56 h-12 mr-3">

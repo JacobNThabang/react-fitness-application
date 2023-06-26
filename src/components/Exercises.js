@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+
 import ExerciseCardGrid from "./ExerciseCardGrid";
 import ExerciseCardList from "./ExerciseCardList";
 
@@ -21,13 +21,13 @@ function Exercises(props) {
             ?
             <div className="mt-10 grid grid-cols-3 gap-4">
                 {exercises.map((exercise) => {
-                    return <ExerciseCardGrid image={exercise.image} name={exercise.name} description={exercise.description} key={exercise.id}/>
+                    return <ExerciseCardGrid image={exercise.image} name={exercise.name} description={exercise.description} id={exercise.id} key={exercise.id} />
                 })}
             </div> 
             :
             <div className="mt-10 flex flex-col gap-2">
                 {exercises.map((exercise) => {
-                    return <ExerciseCardList image={exercise.image} name={exercise.name} description={exercise.description} key={exercise.id}/>
+                    return <ExerciseCardList image={exercise.image} name={exercise.name} description={exercise.description} key={exercise.id} />
                 })}
             </div> 
             }
