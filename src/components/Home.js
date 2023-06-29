@@ -30,6 +30,11 @@ function Home() {
         localStorage.setItem('workouts', JSON.stringify(workouts));
     }
 
+    const resetLog = () => {
+        setWorkouts([]);
+        localStorage.setItem('workouts', JSON.stringify([]));
+    }
+
     return (
         <>
             <div className="flex flex-row w-full h-screen bg-primary-bg">
@@ -68,7 +73,7 @@ function Home() {
                         ?
                         <Exercises exercises={ExerciseList} layoutIsGrid={layoutIsGrid} workouts={workouts} setWorkouts={setWorkouts} />
                         :
-                        <WorkoutLog workouts={workouts} deleteWorkout={deleteWorkout} />
+                        <WorkoutLog workouts={workouts} deleteWorkout={deleteWorkout} resetLog={resetLog} />
                     }
                 </div>
             </div>

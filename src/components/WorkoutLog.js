@@ -1,5 +1,5 @@
 function WorkoutLog(props) {
-    const { workouts, deleteWorkout } = props;
+    const { workouts, deleteWorkout, resetLog } = props;
 
     if (!workouts || workouts.length === 0) {
         return (
@@ -58,6 +58,11 @@ function WorkoutLog(props) {
                         </div>
                     )
                 })}
+            </div>
+            <div className="mt-7 ml-auto rounded-sm w-fit bg-primary-color">
+                <button className="resetLog px-5 py-1" onClick={() => resetLog()}>
+                    Reset Log
+                </button>
             </div>
         </>
 
