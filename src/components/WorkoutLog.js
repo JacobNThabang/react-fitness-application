@@ -1,16 +1,5 @@
-import { useEffect, useState } from "react";
-
 function WorkoutLog(props) {
-    // const {workouts} = props;
-    const [workouts, setWorkouts] = useState([]);
-
-    useEffect(() => {
-        const workoutsInfo = JSON.parse(localStorage.getItem('workouts'));
-
-        if(localStorage.getItem('workouts')){
-            setWorkouts(workoutsInfo);
-        }
-    }, []);
+    const { workouts, deleteWorkout } = props;
 
     if (!workouts || workouts.length === 0) {
         return (
@@ -21,13 +10,13 @@ function WorkoutLog(props) {
             </div>
         )
     }
-    
+
     return (
         <>
             <div className="mt-10 flex flex-col gap-2">
                 {workouts.map((workout) => {
                     return (
-                        <div className="h-[101px]">
+                        <div className="h-[101px] bg-white flex items-center rounded-lg pr-7" key={workout.id}>
                             <div className="flex justify-between w-full">
                                 <div className="flex flex-row justify-between items-center gap-2">
                                     <div className="w-[100px] h-[84px] flex items-center justify-center px-4">
@@ -37,23 +26,32 @@ function WorkoutLog(props) {
                                             alt=""
                                         />
                                     </div>
-                                    <p className="font-bold text-lg">
-                                        {workout.name}
-                                    </p>
-                                    <p className="pl-4 text-base text-secondary-text-color">
-                                        {workout.description}
-                                    </p> 
-                                </div> 
-                                <div className="workoutButtons flex flex-row items-center justify-between">
-                                    <button>
-                                        <p className="edit-text-color">
+                                    <div className="flex flex-col justify-between gap-2">
+                                        <p className="font-bold text-lg">
+                                            {workout.name}
+                                        </p>
+                                        <p className="text-base text-secondary-text-color w-64 truncate">
+                                            {workout.description}
+                                        </p>
+                                        <div className="text-workoutlog-details flex items-center gap-3">
+                                            <span className="font-bold text-sm">{workout.date_logged} </span>
+                                            <span className="text-xs"> | </span>
+                                            <span className="font-bold text-sm">{workout.time} hours spent </span>
+                                            <span className="text-xs"> | </span>
+                                            <span className="font-bold text-sm"> {workout.calories_per_minute} 000 calories burned</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="workoutButtons flex flex-row items-center justify-between gap-4">
+                                    <button className="flex items-center justify-center">
+                                        <p className="buttonText text-edit-text-color">
                                             Edit Time Spent
-                                        </p> 
+                                        </p>
                                     </button>
-                                    <button>
-                                        <p className="-text-color">
+                                    <button className="flex items-center justify-center" onClick={() => deleteWorkout(workout.id)}>
+                                        <p className="buttonText text-delete-text-color">
                                             Delete Exercise
-                                        </p> 
+                                        </p>
                                     </button>
                                 </div>
                             </div>
@@ -62,7 +60,7 @@ function WorkoutLog(props) {
                 })}
             </div>
         </>
-        
+
     );
 };
 

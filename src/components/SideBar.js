@@ -1,13 +1,13 @@
-import {FiChevronDown} from "react-icons/fi"; 
-import {MdHome}  from "react-icons/md"; 
-import {BiCalendarAlt} from "react-icons/bi";
+import { FiChevronDown } from "react-icons/fi";
+import { MdHome } from "react-icons/md";
+import { BiCalendarAlt } from "react-icons/bi";
 
 function SideBar(props) {
-    const {isExercisesOpen, setIsExercisesOpen} = props;
+    const { isExercisesOpen, setIsExercisesOpen } = props;
 
     return (
         <>
-            <div className="w-56 h-12 mr-3">
+            <div className="w-56 h-12 p-10">
                 <div className="flex w-full justify-between gap-8">
                     <div className="flex flex-row gap-3">
                         <div className="flex justify-center items-center rounded-full text-white bg-primary-color h-14 w-14">
@@ -27,9 +27,9 @@ function SideBar(props) {
                     </div>
                 </div>
             </div>
-            <div className="sidebar flex flex-col mt-14">
+            <div className="sidebar flex flex-col mt-14 m-10">
                 <button onClick={() => setIsExercisesOpen(true)}>
-                <div className={`icon ${isExercisesOpen ? "bg-primary-color" : "bg-secondary-button-bg"} text-white rounded-sm`}>
+                    <div className={`icon ${isExercisesOpen ? "bg-primary-color" : "bg-secondary-button-bg"} text-white rounded-sm`}>
                         <MdHome size={20} />
                     </div>
                     <p className={`${isExercisesOpen ? "text-primary-color font-bold" : "text-light-black opacity-50"}`}>Exercises</p>

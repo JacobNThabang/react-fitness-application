@@ -34,24 +34,29 @@ code {
     justify-content: center;
   }
 
-  .p {
+  .label {
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.8px;
   }
 }
+
 .workoutButtons button {
   width: 131px;
   height: 24px;
   flex-shrink: 0;
+  border-radius: 2px;
+  background: #F2F2F2;
 
-  .p {
+  .buttonText {
     display: flex;
-    width: 92px;
     height: 16px;
     padding: 0px 4px;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
     flex-shrink: 0;
   }
 }
@@ -84,38 +89,38 @@ code {
   height: fit-content;
 }
 
-  .overlay_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    width: 386px;
-    height: 47px;
-    flex-direction: row;
-    gap: 15px;
-    flex-shrink: 0;
-  } 
+.overlay_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 386px;
+  height: 47px;
+  flex-direction: row;
+  gap: 15px;
+  flex-shrink: 0;
+}
 
-  .overlay_controls {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .overlay_close {
-    border: none;
-    background-color: transparent;
-    font-size: 36px;
-    cursor: pointer;
-  }
+.overlay_controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-  input {
-    color: rgba(0, 0, 0, 0.40);
-    font-size: 14px;
-    line-height: 20px;
-    border: 1px solid #E1E5E9;
-  }
+.overlay_close {
+  border: none;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}
 
-  /* PROGRESS BAR */
+input {
+  color: rgba(0, 0, 0, 0.40);
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid #E1E5E9;
+}
+
+/* PROGRESS BAR */
 .progressbar {
   width: 60px;
   height: 4px;
@@ -128,4 +133,3 @@ code {
   height: 100%;
   background-color: #A3CE63;
 }
-
