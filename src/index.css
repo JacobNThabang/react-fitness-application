@@ -73,6 +73,22 @@ code {
   z-index: 9;
 }
 
+.edit-overlay_container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 19px 28px 0px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  top: 271px;
+  right: 246px;
+  left: auto;
+  bottom: auto;
+  margin: auto;
+  z-index: 10;
+  padding: 30px;
+  width: fit-content;
+  height: fit-content;
+}
+
 .overlay_container {
   background-color: white;
   border-radius: 10px;

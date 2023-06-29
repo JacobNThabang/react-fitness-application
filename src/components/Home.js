@@ -30,6 +30,16 @@ function Home() {
         localStorage.setItem('workouts', JSON.stringify(workouts));
     }
 
+    const editWorkout = (id, time) => {
+        let index = workouts.map((workout) => {
+            return workout.id
+        }).indexOf(id);
+
+        workouts[index].time = time;
+        setWorkouts(workouts);
+        localStorage.setItem('workouts', JSON.stringify(workouts));
+    }
+
     const resetLog = () => {
         setWorkouts([]);
         localStorage.setItem('workouts', JSON.stringify([]));
@@ -73,7 +83,7 @@ function Home() {
                         ?
                         <Exercises exercises={ExerciseList} layoutIsGrid={layoutIsGrid} workouts={workouts} setWorkouts={setWorkouts} />
                         :
-                        <WorkoutLog workouts={workouts} deleteWorkout={deleteWorkout} resetLog={resetLog} />
+                        <WorkoutLog workouts={workouts} deleteWorkout={deleteWorkout} resetLog={resetLog} editWorkout={editWorkout} />
                     }
                 </div>
             </div>

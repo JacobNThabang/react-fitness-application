@@ -1,5 +1,16 @@
+import { useState } from "react";
+import { CgClose } from "react-icons/cg";
+import EditWorkoutForm from "./EditWorkoutForm";
+
 function WorkoutLog(props) {
-    const { workouts, deleteWorkout, resetLog } = props;
+    const { workouts, deleteWorkout, resetLog, editWorkout } = props;
+    const [isEditingWorkout, setIsEditingWorkout] = useState(false);
+    const [editData, setEditData] = useState({ time: 0, id: null });
+
+    const openEditTimeLogged = (id, time) => {
+        setEditData({ time, id });
+        setIsEditingWorkout(!isEditingWorkout);
+    }
 
     if (!workouts || workouts.length === 0) {
         return (
@@ -13,6 +24,21 @@ function WorkoutLog(props) {
 
     return (
         <>
+            {isEditingWorkout ?
+                <div className="edit-overlay_container">
+                    <div className="flex flex-col justify-between gap-5">
+                        <div className="overlay_header">
+                            <p className="text-xl font-bold leading-8">Edit time spent</p>
+                            <button className="overlay_close" onClick={() => setIsEditingWorkout(false)}>
+                                <CgClose size={30} />
+                            </button>
+                        </div>
+                        <EditWorkoutForm editData={editData} setIsEditingWorkout={setIsEditingWorkout} editWorkout={editWorkout} />
+                    </div>
+                </div>
+
+                : null
+            }
             <div className="mt-10 flex flex-col gap-2">
                 {workouts.map((workout) => {
                     return (
@@ -43,7 +69,7 @@ function WorkoutLog(props) {
                                     </div>
                                 </div>
                                 <div className="workoutButtons flex flex-row items-center justify-between gap-4">
-                                    <button className="flex items-center justify-center">
+                                    <button className="flex items-center justify-center" onClick={() => openEditTimeLogged(workout.id, workout.time)}>
                                         <p className="buttonText text-edit-text-color">
                                             Edit Time Spent
                                         </p>
