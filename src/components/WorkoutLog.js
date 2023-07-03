@@ -64,7 +64,7 @@ function WorkoutLog(props) {
                                             <span className="text-xs"> | </span>
                                             <span className="font-bold text-sm">{workout.time} hours spent </span>
                                             <span className="text-xs"> | </span>
-                                            <span className="font-bold text-sm"> {workout.calories_per_minute} 000 calories burned</span>
+                                            <span className="font-bold text-sm"> {workout.calories_per_minute} calories burned</span>
                                         </div>
                                     </div>
                                 </div>

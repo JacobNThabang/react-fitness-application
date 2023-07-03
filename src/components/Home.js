@@ -6,19 +6,40 @@ import Exercises from "./Exercises";
 import SideBar from "./SideBar";
 import { useEffect, useState } from "react";
 import WorkoutLog from "./WorkoutLog";
+import AddExerciseForm from "./AddExerciseForm";
+import Overlay from "./Overlay";
 
 function Home() {
     const [exercisesOpen, setIsExercisesOpen] = useState(true);
     const [layoutIsGrid, setLayoutIsGrid] = useState(true);
+    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [workouts, setWorkouts] = useState([]);
+    const [exercises, setExercises] = useState(ExerciseList);
 
     useEffect(() => {
         const workoutsInfo = JSON.parse(localStorage.getItem('workouts'));
+        const exercisesInfo = JSON.parse(localStorage.getItem('exercises'));
 
         if (localStorage.getItem('workouts')) {
             setWorkouts(workoutsInfo);
         }
+
+        if (localStorage.getItem('exercises')) {
+            setExercises(exercisesInfo);
+        }
     }, []);
+
+
+    const addNewExercise = (uniqueId, formData) => {
+
+        exercises.push({
+            id: uniqueId,
+            ...formData
+        });
+
+        setExercises(exercises);
+        localStorage.setItem('exercises', JSON.stringify(exercises));
+    }
 
     const deleteWorkout = (id) => {
         let index = workouts.map((workout) => {
@@ -47,6 +68,9 @@ function Home() {
 
     return (
         <>
+            <Overlay isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(!isOverlayOpen)}>
+                <AddExerciseForm addNewExercise={addNewExercise} setIsOverlayOpen={setIsOverlayOpen} />
+            </Overlay>
             <div className="flex flex-row w-full h-screen bg-primary-bg">
                 <div className="w-64 h-auto bg-white">
                     <SideBar isExercisesOpen={exercisesOpen} setIsExercisesOpen={setIsExercisesOpen} />
@@ -54,7 +78,7 @@ function Home() {
                 <div className="flex flex-col h-auto w-full p-10">
                     <div className="flex justify-between w-full">
                         <h1 className="font-bold text-3xl">{exercisesOpen ? "Exercises" : "Workout Log"}</h1>
-                        <button className="bg-primary-color rounded-full text-white p-3 drop-shadow-[0_5px_5px_rgba(0,0,0,0.50)]">
+                        <button className="bg-primary-color rounded-full text-white p-3 drop-shadow-[0_5px_5px_rgba(0,0,0,0.50)]" onClick={() => setIsOverlayOpen(true)}>
                             <RiAddFill size={30} />
                         </button>
                     </div>
@@ -81,7 +105,7 @@ function Home() {
                     </div>
                     {exercisesOpen
                         ?
-                        <Exercises exercises={ExerciseList} layoutIsGrid={layoutIsGrid} workouts={workouts} setWorkouts={setWorkouts} />
+                        <Exercises exercises={exercises} layoutIsGrid={layoutIsGrid} workouts={workouts} setWorkouts={setWorkouts} />
                         :
                         <WorkoutLog workouts={workouts} deleteWorkout={deleteWorkout} resetLog={resetLog} editWorkout={editWorkout} />
                     }
