@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.sidebar button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 217px;
+  height: 58px;
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.workoutButtons button {
+  width: 131px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background: #F2F2F2;
+}
+
+.buttonText {
+  display: flex;
+  height: 16px;
+  padding: 0px 4px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  flex-shrink: 0;
+}
+
+.overlay_background {
+  background: rgba(23, 37, 42, 0.15);
+  backdrop-filter: blur(2.7182817459106445px);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 9;
+}
+
+.edit-overlay_container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 19px 28px 0px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  top: 271px;
+  right: 246px;
+  left: auto;
+  bottom: auto;
+  margin: auto;
+  z-index: 10;
+  padding: 30px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.overlay_container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 19px 28px 0px rgba(0, 0, 0, 0.10);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 10;
+  padding: 30px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.overlay_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 386px;
+  height: 47px;
+  flex-direction: row;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.overlay_controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.overlay_close {
+  border: none;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+input {
+  color: rgba(0, 0, 0, 0.40);
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid #E1E5E9;
+}
+
+/* PROGRESS BAR */
+.progressbar {
+  width: 60px;
+  height: 4px;
+  background-color: white;
+  margin-bottom: 50px;
+}
+
+.progressbar div {
+  width: 33.3%;
+  height: 100%;
+  background-color: #A3CE63;
+}
+
+.resetLog {
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
