@@ -54,8 +54,7 @@ function Exercises(props) {
         const exercise = exercises[index];
         const workout = { ...exercise, ...formData, date_logged: moment(new Date()).format("DD/MM/YYYY") };
 
-        workouts.push(workout);
-        setWorkouts(workouts);
+        setWorkouts([...workouts, workout]);
         localStorage.setItem('workouts', JSON.stringify(workouts));
     }
 

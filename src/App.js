@@ -23,13 +23,13 @@ function App() {
   }, []);
 
   const deleteWorkout = (id) => {
-    let index = workouts.map((workout) => {
-      return workout.id
-    }).indexOf(id);
+    let newWorkouts = [...workouts];
+    newWorkouts = newWorkouts.filter(exercise =>
+      exercise.id !== id
+    );
 
-    workouts.splice(index, 1);
-    setWorkouts(workouts);
-    localStorage.setItem('workouts', JSON.stringify(workouts));
+    setWorkouts(newWorkouts);
+    localStorage.setItem('workouts', JSON.stringify(newWorkouts));
   }
 
   const editWorkout = (id, time) => {
