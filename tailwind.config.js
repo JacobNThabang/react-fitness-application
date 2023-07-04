@@ -22,7 +22,10 @@ module.exports = {
         "delete-text-color": "#FF686C",
         "overlay-color": "#17252A26",
         "workoutlog-details": "#747474",
-        "add-workout": "#00000066"
+        "add-workout": "#00000066",
+        "bgf-from": "#2E2E2E",
+        "bgf-via": "#1E1E1E",
+        "bgf-end": "#151515"
       }
     },
   },
