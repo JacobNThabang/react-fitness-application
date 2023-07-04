@@ -20,11 +20,10 @@ function Exercises(props) {
     useEffect(() => {
         const exercisesInfo = JSON.parse(localStorage.getItem('exercises'));
 
-
         if (localStorage.getItem('exercises')) {
             dispatch(receivedExercises(exercisesInfo));
         }
-    }, []);
+    }, [dispatch]);
 
     if (!exercises || exercises.length === 0) {
         return (
