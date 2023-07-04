@@ -59,9 +59,12 @@ function App() {
         <div className="flex flex-col h-auto w-full p-10">
           <div className="flex justify-between w-full">
             <h1 className="font-bold text-3xl">{exercisesOpen ? "Exercises" : "Workout Log"}</h1>
-            <button className="bg-primary-color rounded-full text-white p-3 drop-shadow-[0_5px_5px_rgba(0,0,0,0.50)]" onClick={() => setIsOverlayOpen(true)}>
-              <RiAddFill size={30} />
-            </button>
+            {exercisesOpen ?
+              <button className="bg-primary-color rounded-full text-white p-3 drop-shadow-[0_5px_5px_rgba(0,0,0,0.50)]" onClick={() => setIsOverlayOpen(true)}>
+                <RiAddFill size={30} />
+              </button>
+              :
+              null}
           </div>
           <div className="flex justify-between w-full mt-14">
             <label className="relative block w-96">
