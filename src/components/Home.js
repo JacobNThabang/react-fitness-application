@@ -1,7 +1,7 @@
 import { RiAddFill } from "react-icons/ri";
 import { BsListUl } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { TfiLayoutGrid2 } from "react-icons/tfi";
-import ExerciseList from "./ExerciseList";
 import Exercises from "./Exercises";
 import SideBar from "./SideBar";
 import { useEffect, useState } from "react";
@@ -14,7 +14,7 @@ function Home() {
     const [layoutIsGrid, setLayoutIsGrid] = useState(true);
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [workouts, setWorkouts] = useState([]);
-    const [exercises, setExercises] = useState(ExerciseList);
+    const [exercises, setExercises] = useState(useSelector((state) => state.exercises.value));
 
     useEffect(() => {
         const workoutsInfo = JSON.parse(localStorage.getItem('workouts'));

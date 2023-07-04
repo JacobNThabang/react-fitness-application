@@ -1,27 +1,41 @@
 import { useState } from "react";
 import { v4 as uuid } from 'uuid';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
+import { addExercise } from "../reducers/Exercises";
 
 
 function AddExerciseForm(props) {
-    const { addNewExercise, setIsOverlayOpen } = props;
+    const dispatch = useDispatch();
+    const exercises = useSelector((state) => state.exercises.value);
+    const { setIsOverlayOpen } = props;
     const [page, setPage] = useState(0);
     const initialFormValues = { name: "", image: "", description: "", calories_per_minute: 0 };
     const [formData, setFormData] = useState(initialFormValues);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsOverlayOpen(false);
 
         const id = uuid();
         let uniqueId = id.slice(0, 8);
 
-        setIsOverlayOpen(false);
-        addNewExercise(uniqueId, formData);
+        const newExercise = {
+            id: uniqueId,
+            ...formData
+        }
+        dispatch(addExercise(newExercise));
+
+        const oldExercises = [...exercises];
+        oldExercises.push(newExercise);
+        localStorage.setItem('exercises', JSON.stringify(oldExercises));
+
         setFormData(initialFormValues);
     }
 
     return (
         <>
-
             <form onSubmit={handleSubmit}>
                 <div className="progressbar">
                     <div style={{ width: page === 0 ? "33.3%" : page === 1 ? "66.6%" : "100%" }}>

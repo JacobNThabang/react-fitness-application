@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import moment from "moment";
+import { useSelector } from "react-redux";
 import ExerciseCardGrid from "./ExerciseCardGrid";
 import ExerciseCardList from "./ExerciseCardList";
 import AddWorkOutForm from "./AddWorkoutForm";
 import Overlay from "./Overlay";
 
+import { receivedExercises } from "../reducers/Exercises";
+
+
 function Exercises(props) {
-    const { exercises, layoutIsGrid, workouts, setWorkouts } = props;
+    const dispatch = useDispatch();
+    const { layoutIsGrid, workouts, setWorkouts } = props;
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [exerciseData, setExerciseData] = useState({ name: "", id: "" });
+    const exercises = useSelector((state) => state.exercises.value);
+
+    useEffect(() => {
+        const exercisesInfo = JSON.parse(localStorage.getItem('exercises'));
+
+
+        if (localStorage.getItem('exercises')) {
+            dispatch(receivedExercises(exercisesInfo));
+        }
+    }, []);
 
     if (!exercises || exercises.length === 0) {
         return (
