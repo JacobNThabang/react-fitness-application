@@ -4,23 +4,19 @@ import { BsListUl } from "react-icons/bs";
 import { TfiLayoutGrid2 } from "react-icons/tfi";
 import Exercises from "./components/Exercises";
 import SideBar from "./components/SideBar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import WorkoutLog from "./components/WorkoutLog";
 import AddExerciseForm from "./components/AddExerciseForm";
 import Overlay from "./components/Overlay";
+import { useDispatch, useSelector } from "react-redux";
+import { receivedWorkouts } from "./reducers/Workouts";
 
 function App() {
+  const dispatch = useDispatch();
   const [exercisesOpen, setIsExercisesOpen] = useState(true);
   const [layoutIsGrid, setLayoutIsGrid] = useState(true);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [workouts, setWorkouts] = useState([]);
-
-  useEffect(() => {
-    const workoutsInfo = JSON.parse(localStorage.getItem('workouts'));
-    if (localStorage.getItem('workouts')) {
-      setWorkouts(workoutsInfo);
-    }
-  }, []);
+  const workouts = useSelector((state) => state.workouts.value);
 
   const deleteWorkout = (id) => {
     let newWorkouts = [...workouts];
@@ -28,22 +24,12 @@ function App() {
       exercise.id !== id
     );
 
-    setWorkouts(newWorkouts);
+    dispatch(receivedWorkouts(newWorkouts));
     localStorage.setItem('workouts', JSON.stringify(newWorkouts));
   }
 
-  const editWorkout = (id, time) => {
-    let index = workouts.map((workout) => {
-      return workout.id
-    }).indexOf(id);
-
-    workouts[index].time = time;
-    setWorkouts(workouts);
-    localStorage.setItem('workouts', JSON.stringify(workouts));
-  }
-
   const resetLog = () => {
-    setWorkouts([]);
+    dispatch(receivedWorkouts([]));
     localStorage.setItem('workouts', JSON.stringify([]));
   }
 
@@ -89,9 +75,9 @@ function App() {
           </div>
           {exercisesOpen
             ?
-            <Exercises layoutIsGrid={layoutIsGrid} workouts={workouts} setWorkouts={setWorkouts} />
+            <Exercises layoutIsGrid={layoutIsGrid} />
             :
-            <WorkoutLog workouts={workouts} deleteWorkout={deleteWorkout} resetLog={resetLog} editWorkout={editWorkout} />
+            <WorkoutLog deleteWorkout={deleteWorkout} resetLog={resetLog} />
           }
         </div>
       </div>

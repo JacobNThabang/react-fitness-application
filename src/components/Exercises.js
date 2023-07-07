@@ -8,20 +8,27 @@ import AddWorkOutForm from "./AddWorkoutForm";
 import Overlay from "./Overlay";
 
 import { receivedExercises } from "../reducers/Exercises";
+import { receivedWorkouts } from "../reducers/Workouts";
 
 
 function Exercises(props) {
     const dispatch = useDispatch();
-    const { layoutIsGrid, workouts, setWorkouts } = props;
+    const { layoutIsGrid } = props;
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [exerciseData, setExerciseData] = useState({ name: "", id: "" });
     const exercises = useSelector((state) => state.exercises.value);
+    const workouts = useSelector((state) => state.workouts.value);
 
     useEffect(() => {
         const exercisesInfo = JSON.parse(localStorage.getItem('exercises'));
+        const workoutsInfo = JSON.parse(localStorage.getItem('workouts'));
 
         if (localStorage.getItem('exercises')) {
             dispatch(receivedExercises(exercisesInfo));
+        }
+
+        if (localStorage.getItem('workouts')) {
+            dispatch(receivedWorkouts(workoutsInfo));
         }
     }, [dispatch]);
 
@@ -53,8 +60,12 @@ function Exercises(props) {
         const exercise = exercises[index];
         const workout = { ...exercise, ...formData, date_logged: moment(new Date()).format("DD/MM/YYYY") };
 
-        setWorkouts([...workouts, workout]);
-        localStorage.setItem('workouts', JSON.stringify(workouts));
+        dispatch(receivedWorkouts([...workouts, workout]));
+
+        const prevWorkouts = [...workouts];
+        prevWorkouts.push(workout);
+
+        localStorage.setItem('workouts', JSON.stringify(prevWorkouts));
     }
 
     return (

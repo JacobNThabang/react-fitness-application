@@ -1,15 +1,17 @@
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { editWorkout } from "../reducers/Workouts";
 
 function EditWorkoutForm(props) {
-    const { editData, setIsEditingWorkout, editWorkout } = props;
+    const dispatch = useDispatch();
+    const { editData, setIsEditingWorkout } = props;
     const [page, setPage] = useState(0);
     const [timeLogged, setTimeLogged] = useState(editData.time);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setIsEditingWorkout(false);
-        editWorkout(editData.id, timeLogged);
+        dispatch(editWorkout({ id: editData.id, time: timeLogged }));
         setTimeLogged(editData.time);
     }
 

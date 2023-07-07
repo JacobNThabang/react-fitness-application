@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import EditWorkoutForm from "./EditWorkoutForm";
+import { useDispatch, useSelector } from "react-redux";
+
+import { receivedWorkouts } from "../reducers/Workouts";
 
 function WorkoutLog(props) {
-    const { workouts, deleteWorkout, resetLog, editWorkout } = props;
+    const dispatch = useDispatch();
+    const { deleteWorkout, editWorkout } = props;
     const [isEditingWorkout, setIsEditingWorkout] = useState(false);
     const [editData, setEditData] = useState({ time: 0, id: null });
+    const workouts = useSelector((state) => state.workouts.value);
 
     const openEditTimeLogged = (id, time) => {
         setEditData({ time, id });
         setIsEditingWorkout(!isEditingWorkout);
+    }
+
+    const resetLog = () => {
+        dispatch(receivedWorkouts([]));
+        localStorage.setItem('workouts', JSON.stringify([]));
     }
 
     if (!workouts || workouts.length === 0) {
