@@ -1,0 +1,39 @@
+Instructions:
+
+You are required to create a React application that helps users track their fitness progress.
+
+The application should include the following functionality:
+a. Display a list of exercises, each with an image, exercise name, and a button to add the exercise to a workout log.
+b. Display a workout log that shows the list of exercises that have been added to the log, along with the total time spent on each exercise and the total calories burned.
+c. Allow the user to remove exercises from the workout log.
+d. Allow the user to change the time spent on exercises in the workout log.
+e. Allow the user to reset the workout log.
+
+The application should save/fetch data to/from local storage and display it in the application. An example of this would be:
+[
+   {
+      "id":1,
+      "name":"Push-ups",
+      "image":"https://www.example.com/images/push-ups.jpg",
+      "calories_per_minute": 6
+   },
+   {
+      "id":2,
+      "name":"Sit-ups",
+      "image":"https://www.example.com/images/sit-ups.jpg",
+      "calories_per_minute":5
+   }
+…
+]
+The workout log section will include more/different fields, but we’ll leave this open for you. 
+
+You are free to use any CSS framework or libraries that you are familiar with, or you can implement the styles yourself. We usually recommend Tailwind, Material UI or Bootstrap.
+The application should be implemented using functional components and hooks.
+You should include unit tests for at least one of your components.
+You can use any libraries or tools that you think are appropriate.
+
+Task:
+1. Create a new React application using `create-react-app`.
+2. Implement the application according to the instructions above.
+3. Commit your changes to a new GitHub repository and send us the link.
+4. Write a brief README that explains how to run the application locally and how to run the tests.
